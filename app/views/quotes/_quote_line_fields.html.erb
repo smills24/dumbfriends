@@ -1,0 +1,11 @@
+<%= f.fields_for :quote_lines do |builder| %>
+<table class="quotesform">
+<tr>
+<td class="name"><%= builder.text_field :name, :size => 20 %></td>
+<td><%= builder.text_field :said %>
+<% if remove %>
+  <%= builder.hidden_field :_destroy %>
+  <%= link_to_function "remove", "remove_fields(this)" %>
+<% end %>
+</td>
+<% end %>

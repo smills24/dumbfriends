@@ -1,0 +1,18 @@
+  
+<% @quotes.each do |quotes| %>
+<center class="titles"><%= quotes.title %></center>
+  <div class="round quotes">
+
+  <% quotes.quote_lines.each do |line| %>
+    <strong><%= line.name %>:</strong>
+    <%= line.said %><br>
+  <% end %>
+
+  </div>
+  <div class="options">
+  <ul>
+  <li class="options"><%= link_to pluralize(quotes.likes, "Like"), '#'%></li>
+  <li class="options"><%= link_to 'Comment', '#'%></li>
+</div></ul>
+<p></p>
+<% end %>
