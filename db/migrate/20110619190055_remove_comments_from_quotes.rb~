@@ -1,0 +1,9 @@
+class RemoveCommentsFromQuotes < ActiveRecord::Migration
+  def self.up
+    remove_column :quotes, :string
+  end
+
+  def self.down
+    add_column :quotes, :string, :comments
+  end
+end

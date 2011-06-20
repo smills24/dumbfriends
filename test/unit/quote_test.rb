@@ -5,7 +5,9 @@ class QuoteTest < ActiveSupport::TestCase
     quote = Quote.new
     assert_respond_to(quote, :title)
     assert_respond_to(quote, :likes)
+    assert_respond_to(quote, :commented)
   end
+
 
   test "Quote likes increases when quote is liked" do
     quote = Quote.new
@@ -32,6 +34,19 @@ class QuoteTest < ActiveSupport::TestCase
   test "Valid Quote is saved" do
     valid_quote = Quote.new(:title => "Title", :quote_lines_attributes => {0 => {:name => "Person", :said => "Stuff"}})
     assert valid_quote.save  
+  end
+
+  test 'Quote has comments attribute' do
+    quote = Quote.new
+    assert_respond_to(quote, :comments)
+  end
+
+  test 'Quote.comments returns an array of the quotes comments' do
+    quote = Quote.new(:id => '1')
+    quote.save
+    comment = Comment.new(:quote_id => '1', :content => 'hey')
+    comment.save
+    assert quote.comments.include? comment
   end
 
 end

@@ -1,4 +1,5 @@
-  
+<%= will_paginate @quotes %>  
+
 <% @quotes.each do |quotes| %>
 <center class="titles"><%= quotes.title %></center>
   <div class="round quotes">
@@ -12,7 +13,8 @@
   <div class="options">
   <ul>
   <li class="options"><%= link_to pluralize(quotes.likes, "Like"), '#'%></li>
-  <li class="options"><%= link_to 'Comment', '#'%></li>
+  <li class="options"><%= link_to 'Comment', comments_quote_path(quotes) %></li>
 </div></ul>
 <p></p>
 <% end %>
+<%= will_paginate @quotes %>

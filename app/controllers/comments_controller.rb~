@@ -1,0 +1,8 @@
+class CommentsController < ApplicationController
+
+  def comments
+    @title = "Comments"
+    @quote = Quote.find(params[:id])
+  end
+
+end

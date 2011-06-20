@@ -1,20 +1,25 @@
 <h1>Submit a Dumb Quote</h1>
 <p>We only accept genuinely dumb, humorous quotes. Don't get upset if yours doesn't get posted; a truly dumb, hilarious friend is a rare thing. Most of them are just dumb.</p>
-
 <%= form_for(@quote) do |f| %>
+<%= render 'error_messages' %>
 <div class="field">
-  <%= f.label :name %>
+  <%= f.label :title %>
   <br>
-  <%= f.text_field :name %>
+  <%= f.text_field :title, :size => 20 %>
 </div>
-
 <div class="field">
-  <%= f.label :quote %>
-  <br>    
-  <%= f.text_field :quote %>
+<table>
+<tr>
+<td class="name"><strong>Name:</strong></td>
+<td class="said"><strong>Said:</strong></td>
+</tr>
+</table>
+<%= render 'quote_line_fields', :f => f , :remove => false %>
+</tr>
+</table>
 </div>
-
 <div class="actions">
+  <%= link_to_add_quote_line "Add Line", f %><br>
   <%= f.submit "Submit" %>
 </div>
 <% end %>

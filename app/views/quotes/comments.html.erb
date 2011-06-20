@@ -1,0 +1,33 @@
+
+<h1><%= @quote.title %></h1>
+
+<div class="round quotes">
+
+<% @quote.quote_lines.each do |ql| %>
+  <strong><%= ql.name %></strong>:
+  <%= ql.said %>
+  <br>
+<% end %>
+</div>
+<br>
+<div class="commentsform">
+</div>
+<%= form_for :comments, @comment, :url => { :action => "new" }, :method => 'post', do |f| %>
+<div class="field">
+  <%= f.label 'Your comment'  %>
+  <%= f.text_field :content %>
+</div>
+<div class="actions">
+  <%= f.submit "Submit" %>
+</div>
+<% end %>
+<% if @comments.empty? %>
+<i>No comments</i>
+<% else %>
+<strong><%= pluralize(@comments.length, 'Comment') %></strong><br><br>
+<% @comments.each do |comment| %>
+<div class="round comments">
+<%= comment.content %>
+</div><br>
+<% end %>
+<% end %>

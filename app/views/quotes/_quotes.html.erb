@@ -1,0 +1,19 @@
+<% @quotes.each do |quotes| %>
+<center class="titles"><%= quotes.title %></center>
+  <div class="round quotes">
+
+  <% quotes.quote_lines.each do |line| %>
+    <strong><%= line.name %>:</strong>
+    <%= line.said %><br>
+  <% end %>
+
+  </div>
+  <div class="options">
+  <div class="like round">
+  <img src="images/like.jpg" width="16px">
+  <%= link_to pluralize(quotes.likes, "Like"), like_quote_path(quotes), :method => :post %></div>
+  <div class="comment round"><%= link_to pluralize(quotes.commented, 'Comment'), comments_quote_path(quotes) %> <img src="images/comment.png" width="14px"></div>
+</div>
+<br><br>
+<% end %>
+<%= will_paginate @quotes %>
